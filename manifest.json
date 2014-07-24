@@ -2,6 +2,9 @@
   "manifest_version": 2,
 
   "name": "No News",
+  "permissions": [
+  "storage"
+  ],
   "description": "This extension demonstrates a 'browser action' with kittens.",
   "version": "1.0",
 

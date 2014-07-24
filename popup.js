@@ -14,40 +14,53 @@ $('*[data-item-type="tweet"]').each(function() {
 });
 
 
-$("p.tweet-text:contains('the')").css( "color", "blue" );
+//$("p.tweet-text:contains('the')").css( "color", "blue" );
 
+
+
+$.ajax({
+    type: "GET"
+    url:"https://www.kimonolabs.com/api/378ld4t0?apikey=ljg3wCjOnciTusPUO6b7KWNsBtShygVN&callback=kimonoCallback",
+    crossDomain:true,
+    dataType:"jsonp"
+});
+
+$.getJSON("https://www.kimonolabs.com/api/378ld4t0?apikey=ljg3wCjOnciTusPUO6b7KWNsBtShygVN&callback=kimonoCallback", function(json) {
+         console.log(json);
+     }
 
 
 var wordsToRemove = ['Gaza','Russian', 'Russia', 'Malaysian'];
 
 for (word = 0; word < wordsToRemove.length; word++) {
-$("p.tweet-text,p.ProfileTweet-text:contains('"+wordsToRemove[word]+"')").replaceWith("foo");
+$("p.tweet-text:contains('"+wordsToRemove[word]+"')").replaceWith("foo");
+$("p.ProfileTweet-text:contains('"+wordsToRemove[word]+"')").replaceWith("foo");
 }
 
-var defaultColor = "blue";
-function loadOptions() {
-    var favColor = localStorage["favColor"];
-    // valid colors are red, blue, green and yellow
-    if (favColor == undefined || (favColor != "red" && favColor != "blue" && favColor != "green" && favColor != "yellow")) {
-        favColor = defaultColor;
-    }
-    var select = document.getElementById("color");
-    for(i = 0; i < select.children.length; i++) {
-        var child = select.children[i];
-            if (child.value == favColor) {
-            child.selected = "true";
-            break;
-        }
-    }
-}
+// var defaultColor = "blue";
+// function loadOptions() {
+//     var favColor = localStorage["favColor"];
+//     // valid colors are red, blue, green and yellow
+//     if (favColor == undefined || (favColor != "red" && favColor != "blue" && favColor != "green" && favColor != "yellow")) {
+//         favColor = defaultColor;
+//     }
+//     var select = document.getElementById("color");
+//     for(i = 0; i < select.children.length; i++) {
+//         var child = select.children[i];
+//             if (child.value == favColor) {
+//             child.selected = "true";
+//             break;
+//         }
+//     }
+// }
  
-function saveOptions() {
-    var select = document.getElementById("color");
-    var color = select.children[select.selectedIndex].value;
-    localStorage["favColor"] = color;
-}
+// function saveOptions() {
+//     var select = document.getElementById("color");
+//     var color = select.children[select.selectedIndex].value;
+//     localStorage["favColor"] = color;
+// }
  
-function eraseOptions() {
-    localStorage.removeItem("favColor");
-    location.reload();
-}
+// function eraseOptions() {
+//     localStorage.removeItem("favColor");
+//     location.reload();
+// }
