@@ -13,54 +13,32 @@ $('*[data-item-type="tweet"]').each(function() {
 
 });
 
+var wordsToRemove = [];
 
-//$("p.tweet-text:contains('the')").css( "color", "blue" );
-
+function kimonoCallback(data) {
+    console.log("foo");
+    var arrayOfStories = data.results.collection1;
+    for ( var i = 0; i < arrayOfStories.length; i++) {
+        var storyText = arrayOfStories[i].text.text;
+        arrayOfStoryText = storyText.split(" ");
+        for (var j = 0; j < arrayOfStoryText.length; j++) {
+            wordsToRemove.push(arrayOfStoryText[j]);
+        }
+    }
+    console.log(wordsToRemove);
+    for (word = 0; word < wordsToRemove.length; word++) {
+        $("p.tweet-text:contains('"+wordsToRemove[word]+"')").replaceWith("foo");
+        $("p.ProfileTweet-text:contains('"+wordsToRemove[word]+"')").replaceWith("foo");
+    }
+}
 
 
 $.ajax({
-    type: "GET"
-    url:"https://www.kimonolabs.com/api/378ld4t0?apikey=ljg3wCjOnciTusPUO6b7KWNsBtShygVN&callback=kimonoCallback",
-    crossDomain:true,
-    dataType:"jsonp"
+    "url":"https://www.kimonolabs.com/api/378ld4t0?apikey=ljg3wCjOnciTusPUO6b7KWNsBtShygVN",
+    "crossDomain":true,
+    "success":kimonoCallback
 });
 
-$.getJSON("https://www.kimonolabs.com/api/378ld4t0?apikey=ljg3wCjOnciTusPUO6b7KWNsBtShygVN&callback=kimonoCallback", function(json) {
-         console.log(json);
-     }
+//var wordsToRemove = ['Gaza','Russian', 'Russia', 'Malaysian'];
 
 
-var wordsToRemove = ['Gaza','Russian', 'Russia', 'Malaysian'];
-
-for (word = 0; word < wordsToRemove.length; word++) {
-$("p.tweet-text:contains('"+wordsToRemove[word]+"')").replaceWith("foo");
-$("p.ProfileTweet-text:contains('"+wordsToRemove[word]+"')").replaceWith("foo");
-}
-
-// var defaultColor = "blue";
-// function loadOptions() {
-//     var favColor = localStorage["favColor"];
-//     // valid colors are red, blue, green and yellow
-//     if (favColor == undefined || (favColor != "red" && favColor != "blue" && favColor != "green" && favColor != "yellow")) {
-//         favColor = defaultColor;
-//     }
-//     var select = document.getElementById("color");
-//     for(i = 0; i < select.children.length; i++) {
-//         var child = select.children[i];
-//             if (child.value == favColor) {
-//             child.selected = "true";
-//             break;
-//         }
-//     }
-// }
- 
-// function saveOptions() {
-//     var select = document.getElementById("color");
-//     var color = select.children[select.selectedIndex].value;
-//     localStorage["favColor"] = color;
-// }
- 
-// function eraseOptions() {
-//     localStorage.removeItem("favColor");
-//     location.reload();
-// }
