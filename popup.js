@@ -21,14 +21,19 @@ function kimonoCallback(data) {
     for ( var i = 0; i < arrayOfStories.length; i++) {
         var storyText = arrayOfStories[i].text.text;
         arrayOfStoryText = storyText.split(" ");
-        for (var j = 0; j < arrayOfStoryText.length; j++) {
-            wordsToRemove.push(arrayOfStoryText[j]);
+        for (var j = 1; j < arrayOfStoryText.length; j++) { //start with 1 to ignore first words
+            if (/^[A-Z]/.test(arrayOfStoryText[j][0])) { //(arrayOfStoryText[j][0].toUpperCase() == arrayOfStoryText[j][0]) {
+                wordsToRemove.push(arrayOfStoryText[j]);
+            }
         }
     }
-    console.log(wordsToRemove);
-    for (word = 0; word < wordsToRemove.length; word++) {
-        $("p.tweet-text:contains('"+wordsToRemove[word]+"')").replaceWith("foo");
-        $("p.ProfileTweet-text:contains('"+wordsToRemove[word]+"')").replaceWith("foo");
+    localStorage.setItem( 'wordsToRemove', JSON.stringify(wordsToRemove) );
+    console.log( JSON.parse( localStorage.getItem( 'wordsToRemove' ) ) );
+    var wordsToReplace = JSON.parse( localStorage.getItem( 'wordsToRemove' ) );
+    for (word = 0; word < wordsToReplace.length; word++) {
+        console.log(wordsToReplace[word]);
+        $("p.tweet-text:contains('"+wordsToReplace[word]+"')").replaceWith("foo");
+        $("p.ProfileTweet-text:contains('"+wordsToReplace[word]+"')").replaceWith("foo");
     }
 }
 
