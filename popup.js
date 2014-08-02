@@ -28,11 +28,14 @@ function kimonoCallback(data) {
         }
     }
     localStorage.setItem( 'wordsToRemove', JSON.stringify(wordsToRemove) );
-    console.log( JSON.parse( localStorage.getItem( 'wordsToRemove' ) ) );
     var wordsToReplace = JSON.parse( localStorage.getItem( 'wordsToRemove' ) );
+    console.log(wordsToReplace);
+
     for (word = 0; word < wordsToReplace.length; word++) {
         console.log(wordsToReplace[word]);
-        $("p.tweet-text:contains('"+wordsToReplace[word]+"')").replaceWith("foo");
+        $("p.tweet-text:contains('"+wordsToReplace[word]+"')").replaceWith(function(n){
+            return '<iframe src="//www.youtube.com/embed/9UgdkifRN4c?rel=0" frameborder="0" allowfullscreen></iframe>';
+        });
         $("p.ProfileTweet-text:contains('"+wordsToReplace[word]+"')").replaceWith("foo");
     }
 }
@@ -43,7 +46,5 @@ $.ajax({
     "crossDomain":true,
     "success":kimonoCallback
 });
-
-//var wordsToRemove = ['Gaza','Russian', 'Russia', 'Malaysian'];
 
 
