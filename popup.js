@@ -15,7 +15,10 @@ $('*[data-item-type="tweet"]').each(function() {
 
 var wordsToReplace = [];
 
+
+
 function kimonoCallback(data) {
+    var monkeyImageURL = "chrome.extension.getURL('seeNo.png')";
     console.log("foo");
     var arrayOfStories = data.results.collection1;
     for ( var i = 0; i < arrayOfStories.length; i++) {
@@ -40,7 +43,7 @@ function kimonoCallback(data) {
         $("p.tweet-text:contains('"+wordsToReplace[word]+"')").replaceWith(function(n){
             return '<iframe src="//www.youtube.com/embed/9UgdkifRN4c?rel=0" frameborder="0" allowfullscreen></iframe>';
         });
-        $("p.ProfileTweet-text:contains('"+wordsToReplace[word]+"')").replaceWith("foo");
+        $("p.ProfileTweet-text:contains('"+wordsToReplace[word]+"')").replaceWith('<img src="'+monkeyImageURL+'">');
     }
 }
 
@@ -51,4 +54,13 @@ $.ajax({
     "success":kimonoCallback
 });
 
+$( window ).scroll(function() {
+    console.log("checking new stuff");
+      for (word = 0; word < wordsToReplace.length; word++) {
+        $("p.tweet-text:contains('"+wordsToReplace[word]+"')").replaceWith(function(n){
+            return '<iframe src="//www.youtube.com/embed/9UgdkifRN4c?rel=0" frameborder="0" allowfullscreen></iframe>';
+        });
+        $("p.ProfileTweet-text:contains('"+wordsToReplace[word]+"')").replaceWith('<img src="'+monkeyImageURL+'">');
+    }
+});
 

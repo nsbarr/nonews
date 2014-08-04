@@ -8,7 +8,11 @@
   "options_page":"options.html",
   "description": "This extension demonstrates a 'browser action' with kittens.",
   "version": "1.0",
-
+  "web_accessible_resources": [
+  "seeNo.png",
+  "hearNo.png",
+  "sayNo.png"
+  ],
   "browser_action": {
     "default_icon": "icon.png",
     "default_popup": "popup.html"
