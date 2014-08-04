@@ -5,6 +5,7 @@
   "permissions": [
   "storage"
   ],
+  "options_page":"options.html",
   "description": "This extension demonstrates a 'browser action' with kittens.",
   "version": "1.0",
 

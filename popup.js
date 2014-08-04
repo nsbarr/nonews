@@ -13,7 +13,7 @@ $('*[data-item-type="tweet"]').each(function() {
 
 });
 
-var wordsToRemove = [];
+var wordsToReplace = [];
 
 function kimonoCallback(data) {
     console.log("foo");
@@ -23,13 +23,17 @@ function kimonoCallback(data) {
         arrayOfStoryText = storyText.split(" ");
         for (var j = 1; j < arrayOfStoryText.length; j++) { //start with 1 to ignore first words
             if (/^[A-Z]/.test(arrayOfStoryText[j][0])) { //(arrayOfStoryText[j][0].toUpperCase() == arrayOfStoryText[j][0]) {
-                wordsToRemove.push(arrayOfStoryText[j]);
+                wordsToReplace.push(arrayOfStoryText[j]);
             }
         }
     }
-    localStorage.setItem( 'wordsToRemove', JSON.stringify(wordsToRemove) );
-    var wordsToReplace = JSON.parse( localStorage.getItem( 'wordsToRemove' ) );
+    //localStorage.setItem();
+    chrome.storage.local.set({'wordsToReplace':wordsToReplace});
+    //var wordsToReplace = JSON.parse( localStorage.getItem( 'wordsToRemove' ) );
+    //var wordsToDisplay = chrome.storage.local.get('wordsToReplace');
+
     console.log(wordsToReplace);
+    console.log('wordsToReplace');
 
     for (word = 0; word < wordsToReplace.length; word++) {
         console.log(wordsToReplace[word]);
