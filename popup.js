@@ -18,7 +18,7 @@ var wordsToReplace = [];
 
 
 function kimonoCallback(data) {
-    var monkeyImageURL = "chrome.extension.getURL('seeNo.png')";
+   // var monkeyImageURL = "images/chrome.extension.getURL('seeNo.png')";
     console.log("foo");
     var arrayOfStories = data.results.collection1;
     for ( var i = 0; i < arrayOfStories.length; i++) {
@@ -43,7 +43,7 @@ function kimonoCallback(data) {
         $("p.tweet-text:contains('"+wordsToReplace[word]+"')").replaceWith(function(n){
             return '<iframe src="//www.youtube.com/embed/9UgdkifRN4c?rel=0" frameborder="0" allowfullscreen></iframe>';
         });
-        $("p.ProfileTweet-text:contains('"+wordsToReplace[word]+"')").replaceWith('<img src="'+monkeyImageURL+'">');
+        $("p.ProfileTweet-text:contains('"+wordsToReplace[word]+"')").replaceWith("<img src='"+chrome.extension.getURL("seeNo.png")+"'>");
     }
 }
 
@@ -60,7 +60,7 @@ $( window ).scroll(function() {
         $("p.tweet-text:contains('"+wordsToReplace[word]+"')").replaceWith(function(n){
             return '<iframe src="//www.youtube.com/embed/9UgdkifRN4c?rel=0" frameborder="0" allowfullscreen></iframe>';
         });
-        $("p.ProfileTweet-text:contains('"+wordsToReplace[word]+"')").replaceWith('<img src="'+monkeyImageURL+'">');
+        $("p.ProfileTweet-text:contains('"+wordsToReplace[word]+"')").replaceWith("<img src='"+chrome.extension.getURL("seeNo.png")+"'>");
     }
 });
 
