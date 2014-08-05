@@ -1,12 +1,13 @@
 {
   "manifest_version": 2,
 
-  "name": "No News",
+  "name": "No News is Good News",
+  "short_name": "No News",
   "permissions": [
   "storage"
   ],
   "options_page":"options.html",
-  "description": "This extension demonstrates a 'browser action' with kittens.",
+  "description": "Hides bad news from your Internet before you know about it.",
   "version": "1.0",
   "web_accessible_resources": [
   "seeNo.png",
@@ -14,7 +15,7 @@
   "sayNo.png"
   ],
   "browser_action": {
-    "default_icon": "sayNo.png",
+    "default_icon": "noNewsIcon.png",
     "default_popup": "popup.html"
   },
   "content_scripts": [ {
