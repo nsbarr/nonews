@@ -2,16 +2,16 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-$('*[data-item-type="tweet"]').each(function() {
+//$('*[data-item-type="tweet"]').each(function() {
     // do something exciting with each div
-    $(this).css("border", "1px solid red");
+  //  $(this).css("border", "1px solid red");
 
     // do something by directly manipulating the wrapped DOM element
-    this.style.border = "1px solid red";
+    //this.style.border = "1px solid red";
 
     // do something only if this particular div has a class of 'pretty'
 
-});
+//});
 
 var wordsToReplace = [];
 
@@ -40,9 +40,16 @@ function kimonoCallback(data) {
 
     for (word = 0; word < wordsToReplace.length; word++) {
         console.log(wordsToReplace[word]);
-        $("p.tweet-text:contains('"+wordsToReplace[word]+"')").replaceWith(function(n){
-            return '<iframe src="//www.youtube.com/embed/9UgdkifRN4c?rel=0" frameborder="0" allowfullscreen></iframe>';
-        });
+
+        var originalTweet = $("p.tweet-text:contains('"+wordsToReplace[word]+"')").clone();
+        
+
+
+        $("p.tweet-text:contains('"+wordsToReplace[word]+"')").replaceWith("<img src='"+chrome.extension.getURL("seeNo.png")+"' style='margin-left:auto;margin-right:auto;display:block;'>");
+
+        
+
+
         $("p.ProfileTweet-text:contains('"+wordsToReplace[word]+"')").replaceWith("<img src='"+chrome.extension.getURL("seeNo.png")+"' style='margin-left:auto;margin-right:auto;display:block;'>");
     }
 }
@@ -57,9 +64,7 @@ $.ajax({
 $( window ).scroll(function() {
     console.log("checking new stuff");
       for (word = 0; word < wordsToReplace.length; word++) {
-        $("p.tweet-text:contains('"+wordsToReplace[word]+"')").replaceWith(function(n){
-            return '<iframe src="//www.youtube.com/embed/9UgdkifRN4c?rel=0" frameborder="0" allowfullscreen></iframe>';
-        });
+        $("p.tweet-text:contains('"+wordsToReplace[word]+"')").replaceWith("<img src='"+chrome.extension.getURL("seeNo.png")+"' style='margin-left:auto;margin-right:auto;display:block;'>");
         $("p.ProfileTweet-text:contains('"+wordsToReplace[word]+"')").replaceWith("<img src='"+chrome.extension.getURL("seeNo.png")+"' style='margin-left:auto;margin-right:auto;display:block;'>");
     }
 });

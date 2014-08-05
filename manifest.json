@@ -14,7 +14,7 @@
   "sayNo.png"
   ],
   "browser_action": {
-    "default_icon": "icon.png",
+    "default_icon": "sayNo.png",
     "default_popup": "popup.html"
   },
   "content_scripts": [ {
