@@ -16,7 +16,6 @@
 var wordsToReplace = [];
 
 
-
 function kimonoCallback(data) {
    // var monkeyImageURL = "images/chrome.extension.getURL('seeNo.png')";
     console.log("foo");
@@ -41,7 +40,7 @@ function kimonoCallback(data) {
     for (word = 0; word < wordsToReplace.length; word++) {
         console.log(wordsToReplace[word]);
 
-        var originalTweet = $("p.tweet-text:contains('"+wordsToReplace[word]+"')").clone();
+        //var originalTweet = $("p.tweet-text:contains('"+wordsToReplace[word]+"')").clone();
         
 
 
