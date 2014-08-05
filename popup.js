@@ -43,7 +43,7 @@ function kimonoCallback(data) {
         $("p.tweet-text:contains('"+wordsToReplace[word]+"')").replaceWith(function(n){
             return '<iframe src="//www.youtube.com/embed/9UgdkifRN4c?rel=0" frameborder="0" allowfullscreen></iframe>';
         });
-        $("p.ProfileTweet-text:contains('"+wordsToReplace[word]+"')").replaceWith("<img src='"+chrome.extension.getURL("seeNo.png")+"'>");
+        $("p.ProfileTweet-text:contains('"+wordsToReplace[word]+"')").replaceWith("<img src='"+chrome.extension.getURL("seeNo.png")+"' style='margin-left:auto;margin-right:auto;display:block;'>");
     }
 }
 
@@ -60,7 +60,7 @@ $( window ).scroll(function() {
         $("p.tweet-text:contains('"+wordsToReplace[word]+"')").replaceWith(function(n){
             return '<iframe src="//www.youtube.com/embed/9UgdkifRN4c?rel=0" frameborder="0" allowfullscreen></iframe>';
         });
-        $("p.ProfileTweet-text:contains('"+wordsToReplace[word]+"')").replaceWith("<img src='"+chrome.extension.getURL("seeNo.png")+"'>");
+        $("p.ProfileTweet-text:contains('"+wordsToReplace[word]+"')").replaceWith("<img src='"+chrome.extension.getURL("seeNo.png")+"' style='margin-left:auto;margin-right:auto;display:block;'>");
     }
 });
 
