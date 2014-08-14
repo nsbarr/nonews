@@ -1,24 +1,9 @@
-// Copyright (c) 2012 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
-//$('*[data-item-type="tweet"]').each(function() {
-    // do something exciting with each div
-  //  $(this).css("border", "1px solid red");
-
-    // do something by directly manipulating the wrapped DOM element
-    //this.style.border = "1px solid red";
-
-    // do something only if this particular div has a class of 'pretty'
-
-//});
+// made by @nsbarr. enjoy!
 
 var wordsToReplace = [];
 var hiddenCount = 0;
 
 function kimonoCallback(data) {
-   // var monkeyImageURL = "images/chrome.extension.getURL('seeNo.png')";
-    console.log("foo");
     var arrayOfStories = data.results.collection1;
     for ( var i = 0; i < arrayOfStories.length; i++) {
         var storyText = arrayOfStories[i].text.text;
@@ -29,30 +14,16 @@ function kimonoCallback(data) {
             }
         }
     }
-    //localStorage.setItem();
     chrome.storage.local.set({'wordsToReplace':wordsToReplace});
-    //var wordsToReplace = JSON.parse( localStorage.getItem( 'wordsToRemove' ) );
-    //var wordsToDisplay = chrome.storage.local.get('wordsToReplace');
-
     console.log(wordsToReplace);
-    console.log('wordsToReplace');
 
     for (word = 0; word < wordsToReplace.length; word++) {
         console.log(wordsToReplace[word]);
-
-        //var originalTweet = $("p.tweet-text:contains('"+wordsToReplace[word]+"')").clone();
         
-
-
-        //$("p.tweet-text:contains('"+wordsToReplace[word]+"')").replaceWith("<img src='"+chrome.extension.getURL("seeNo.png")+"' style='margin-left:auto;margin-right:auto;display:block;'>");
-
         hiddenCount = hiddenCount + $("p.tweet-text:contains('"+wordsToReplace[word]+"')").length + $("p.ProfileTweet-text:contains('"+wordsToReplace[word]+"')").length;
 
-
-
-      //  $("p.ProfileTweet-text:contains('"+wordsToReplace[word]+"')").replaceWith("<img src='"+chrome.extension.getURL("seeNo.png")+"' style='margin-left:auto;margin-right:auto;display:block;'>");
-                $("p.tweet-text:contains('"+wordsToReplace[word]+"')").closest('.Grid').hide();
-        $("p.ProfileTweet-text:contains('"+wordsToReplace[word]+"')").closest('.Grid').hide();
+        $("p.tweet-text:contains('"+wordsToReplace[word]+"')").closest("li").hide();
+        $("p.ProfileTweet-text:contains('"+wordsToReplace[word]+"')").closest("li").hide();
     }
 }
 
@@ -71,10 +42,9 @@ $( window ).scroll(function() {
         hiddenCount = hiddenCount + $("p.tweet-text:contains('"+wordsToReplace[word]+"')").length + $("p.ProfileTweet-text:contains('"+wordsToReplace[word]+"')").length;
      //   console.log(hiddenCount);
         chrome.storage.local.set({'hiddenCount':hiddenCount});
-        $("p.tweet-text:contains('"+wordsToReplace[word]+"')").closest('.Grid').hide();
+        $("p.tweet-text:contains('"+wordsToReplace[word]+"')").closest("li").hide();
         //counter goes here
-        $("p.ProfileTweet-text:contains('"+wordsToReplace[word]+"')").closest('.Grid').hide();
-        chrome.extension.sendMessage('');
+        $("p.ProfileTweet-text:contains('"+wordsToReplace[word]+"')").closest("li").hide();
 
     }
 });
