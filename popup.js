@@ -14,7 +14,7 @@
 //});
 
 var wordsToReplace = [];
-
+var hiddenCount = 0;
 
 function kimonoCallback(data) {
    // var monkeyImageURL = "images/chrome.extension.getURL('seeNo.png')";
@@ -44,18 +44,21 @@ function kimonoCallback(data) {
         
 
 
-        $("p.tweet-text:contains('"+wordsToReplace[word]+"')").replaceWith("<img src='"+chrome.extension.getURL("seeNo.png")+"' style='margin-left:auto;margin-right:auto;display:block;'>");
+        //$("p.tweet-text:contains('"+wordsToReplace[word]+"')").replaceWith("<img src='"+chrome.extension.getURL("seeNo.png")+"' style='margin-left:auto;margin-right:auto;display:block;'>");
 
-        
+        hiddenCount = hiddenCount + $("p.tweet-text:contains('"+wordsToReplace[word]+"')").length + $("p.ProfileTweet-text:contains('"+wordsToReplace[word]+"')").length;
 
 
-        $("p.ProfileTweet-text:contains('"+wordsToReplace[word]+"')").replaceWith("<img src='"+chrome.extension.getURL("seeNo.png")+"' style='margin-left:auto;margin-right:auto;display:block;'>");
+
+      //  $("p.ProfileTweet-text:contains('"+wordsToReplace[word]+"')").replaceWith("<img src='"+chrome.extension.getURL("seeNo.png")+"' style='margin-left:auto;margin-right:auto;display:block;'>");
+                $("p.tweet-text:contains('"+wordsToReplace[word]+"')").closest('.Grid').hide();
+        $("p.ProfileTweet-text:contains('"+wordsToReplace[word]+"')").closest('.Grid').hide();
     }
 }
 
 
 $.ajax({
-    "url":"https://www.kimonolabs.com/api/378ld4t0?apikey=ljg3wCjOnciTusPUO6b7KWNsBtShygVN",
+    "url":"https://www.kimonolabs.com/api/9u5nlrd2?apikey=ljg3wCjOnciTusPUO6b7KWNsBtShygVN",
     "crossDomain":true,
     "success":kimonoCallback
 });
@@ -63,8 +66,16 @@ $.ajax({
 $( window ).scroll(function() {
     console.log("checking new stuff");
       for (word = 0; word < wordsToReplace.length; word++) {
-        $("p.tweet-text:contains('"+wordsToReplace[word]+"')").replaceWith("<img src='"+chrome.extension.getURL("seeNo.png")+"' style='margin-left:auto;margin-right:auto;display:block;'>");
-        $("p.ProfileTweet-text:contains('"+wordsToReplace[word]+"')").replaceWith("<img src='"+chrome.extension.getURL("seeNo.png")+"' style='margin-left:auto;margin-right:auto;display:block;'>");
+        //$("p.tweet-text:contains('"+wordsToReplace[word]+"')").replaceWith("<img src='"+chrome.extension.getURL("seeNo.png")+"' style='margin-left:auto;margin-right:auto;display:block;'>");
+        //$("p.ProfileTweet-text:contains('"+wordsToReplace[word]+"')").replaceWith("<img src='"+chrome.extension.getURL("seeNo.png")+"' style='margin-left:auto;margin-right:auto;display:block;'>");
+        hiddenCount = hiddenCount + $("p.tweet-text:contains('"+wordsToReplace[word]+"')").length + $("p.ProfileTweet-text:contains('"+wordsToReplace[word]+"')").length;
+     //   console.log(hiddenCount);
+        chrome.storage.local.set({'hiddenCount':hiddenCount});
+        $("p.tweet-text:contains('"+wordsToReplace[word]+"')").closest('.Grid').hide();
+        //counter goes here
+        $("p.ProfileTweet-text:contains('"+wordsToReplace[word]+"')").closest('.Grid').hide();
+        chrome.extension.sendMessage('');
+
     }
 });
 
