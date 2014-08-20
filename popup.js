@@ -3,7 +3,10 @@
 var wordsToReplace = [];
 var hiddenCount = 0;
 
+var theDomainPattern = new RegExp("twitter");
+
 function kimonoCallback(data) {
+    if (theDomainPattern.test(document.domain) == true) {
     var arrayOfStories = data.results.collection1;
     for ( var i = 0; i < arrayOfStories.length; i++) {
         var storyText = arrayOfStories[i].text.text;
@@ -24,6 +27,13 @@ function kimonoCallback(data) {
 
         $("p.tweet-text:contains('"+wordsToReplace[word]+"')").closest("li").hide();
         $("p.ProfileTweet-text:contains('"+wordsToReplace[word]+"')").closest("li").hide();
+        $("p.tweet-text:contains('"+wordsToReplace[word]+"')").closest("div.Grid").hide();
+        $("p.ProfileTweet-text:contains('"+wordsToReplace[word]+"')").closest("div.Grid").hide();
+
+    }
+    }
+    else {
+        console.log("Bad Domain");
     }
 }
 
@@ -35,6 +45,8 @@ $.ajax({
 });
 
 $( window ).scroll(function() {
+    if (theDomainPattern.test(document.domain) == true) {
+
     console.log("checking new stuff");
       for (word = 0; word < wordsToReplace.length; word++) {
         //$("p.tweet-text:contains('"+wordsToReplace[word]+"')").replaceWith("<img src='"+chrome.extension.getURL("seeNo.png")+"' style='margin-left:auto;margin-right:auto;display:block;'>");
@@ -45,7 +57,12 @@ $( window ).scroll(function() {
         $("p.tweet-text:contains('"+wordsToReplace[word]+"')").closest("li").hide();
         //counter goes here
         $("p.ProfileTweet-text:contains('"+wordsToReplace[word]+"')").closest("li").hide();
+        $("p.tweet-text:contains('"+wordsToReplace[word]+"')").closest("div.Grid").hide();
+        $("p.ProfileTweet-text:contains('"+wordsToReplace[word]+"')").closest("div.Grid").hide();
 
     }
+}
 });
+var n = $('#doc :hidden').length;
+console.log("Hid '"+n+"' items");
 
